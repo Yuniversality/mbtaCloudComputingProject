@@ -98,8 +98,8 @@ function calculateTravelTime(departureSorted, arrivalSorted)
 // Because of the logic of the API, it doesn't give you the departure time from
 // a terminal station
 //findTravelTime("Red", "Quincy Center", "Shawmut");
-findTravelTime("Red", "Porter", "Alewife");
-async function findTravelTime(mbtaLine, startingStation, endingStation)
+travelTime("Red", "Porter", "Alewife");
+export async function travelTime(mbtaLine, startingStation, endingStation)
 {
     //let mbtaLine = document.getElementById("").value;
     //let startingStation = document.getElementById("").value;
@@ -107,10 +107,10 @@ async function findTravelTime(mbtaLine, startingStation, endingStation)
 
     const stopIds = await getStopIds(mbtaLine, startingStation, endingStation);
     const sortedTimes = await getPredictedSchedules(stopIds);
-    let travelTime = calculateTravelTime(sortedTimes[0], sortedTimes[1]);
+    let timeTraveled = calculateTravelTime(sortedTimes[0], sortedTimes[1]);
     // travelTime[0] is a number, convert to string
-    travelTime[0] = travelTime[0].toString();
-    console.log("It will take: ", travelTime[0], travelTime[1]);
-    return travelTime;
+    timeTraveled[0] = timeTraveled[0].toString();
+    console.log("It will take: ", timeTraveled[0], timeTraveled[1]);
+    return timeTraveled;
     document.getElementById("").textContent = "It will take: ", travelTime[0], travelTime[1];
 }
