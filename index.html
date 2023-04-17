@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> MBTA Tracker Test Website </title>
+</head>
+<body>
+    <form action="" method="post">
+        <button onclick="redSolo()" type = "button">Red Line</button>
+
+        <script>
+            function redSolo() {
+            const button1 = document.getElementById("red1");
+            const button2 = document.getElementById("red2");
+            const button3 = document.getElementById("orange1");
+            const button4 = document.getElementById("orange2");
+            const button5 = document.getElementById("blue1");
+            const button6 = document.getElementById("blue2");
+            button1.disabled = false;
+            button2.disabled = false;
+            button3.disabled = true;
+            button4.disabled = true;
+            button5.disabled = true;
+            button6.disabled = true;
+
+            const sub1 = document.getElementById("redSub");
+            const sub2 = document.getElementById("orangeSub");
+            const sub3 = document.getElementById("blueSub");
+            sub1.disabled = false;
+            sub2.disabled = true;
+            sub3.disabled = true;
+        }
+        </script>
+
+        <button onclick="orangeSolo()" type = "button">Orange Line</button>
+
+        <script>
+            function orangeSolo() {
+            const button1 = document.getElementById("red1");
+            const button2 = document.getElementById("red2");
+            const button3 = document.getElementById("orange1");
+            const button4 = document.getElementById("orange2");
+            const button5 = document.getElementById("blue1");
+            const button6 = document.getElementById("blue2");
+            button1.disabled = true;
+            button2.disabled = true;
+            button3.disabled = false;
+            button4.disabled = false;
+            button5.disabled = true;
+            button6.disabled = true;
+
+            const sub1 = document.getElementById("redSub");
+            const sub2 = document.getElementById("orangeSub");
+            const sub3 = document.getElementById("blueSub");
+            sub1.disabled = true;
+            sub2.disabled = false;
+            sub3.disabled = true;
+        }
+        </script>
+
+        <button onclick="blueSolo()" type = "button">Blue Line</button>
+
+        <script>
+            function blueSolo() {
+            const button1 = document.getElementById("red1");
+            const button2 = document.getElementById("red2");
+            const button3 = document.getElementById("orange1");
+            const button4 = document.getElementById("orange2");
+            const button5 = document.getElementById("blue1");
+            const button6 = document.getElementById("blue2");
+            button1.disabled = true;
+            button2.disabled = true;
+            button3.disabled = true;
+            button4.disabled = true;
+            button5.disabled = false;
+            button6.disabled = false;
+
+            const sub1 = document.getElementById("redSub");
+            const sub2 = document.getElementById("orangeSub");
+            const sub3 = document.getElementById("blueSub");
+            sub1.disabled = true;
+            sub2.disabled = true;
+            sub3.disabled = false;
+        }
+        </script>
+        <br>
+        <h2>RED LINE</h2>
+
+        <label for="red1">Starting Station:</label>
+        <select name="red1" id="red1" disabled>
+            <option value="alewife">Alewife</option>
+            <option value="davis">Davis</option>
+            <option value="porter">Porter</option>
+            <option value="harvard">Harvard</option>
+            <option value="central">Central</option>
+            <option value="kendall/mit">Kendall/MIT</option>
+            <option value="charles/mgh">Charles/MGH</option>
+            <option value="park street">Park Street</option>
+            <option value="downtown crossing">Downtown Crossing</option>
+            <option value="south station">South Station</option>
+            <option value="broadway">Broadway</option>
+            <option value="andrew">Andrew</option>
+            <option value="jfk/umass">JFK/UMass</option>
+            <option value="savin hill">Savin Hill</option>
+            <option value="fields corner">Fields Corner</option>
+            <option value="shawmut">Shawmut</option>
+            <option value="ashmont">Ashmont</option>
+            <option value="north quincy">North Quincy</option>
+            <option value="wollaston">Wollaston</option>
+            <option value="quincy center">Quincy Center</option>
+            <option value="quincy adams">Quincy Adams</option>
+            <option value="braintree">Braintree</option>
+        </select>
+        <br><br>
+
+        <label for="red2">Ending Station:</label>
+        <select name="red2" id="red2" disabled>
+            <option value="alewife">Alewife</option>
+            <option value="davis">Davis</option>
+            <option value="porter">Porter</option>
+            <option value="harvard">Harvard</option>
+            <option value="central">Central</option>
+            <option value="kendall/mit">Kendall/MIT</option>
+            <option value="charles/mgh">Charles/MGH</option>
+            <option value="park street">Park Street</option>
+            <option value="downtown crossing">Downtown Crossing</option>
+            <option value="south station">South Station</option>
+            <option value="broadway">Broadway</option>
+            <option value="andrew">Andrew</option>
+            <option value="jfk/umass">JFK/UMass</option>
+            <option value="savin hill">Savin Hill</option>
+            <option value="fields corner">Fields Corner</option>
+            <option value="shawmut">Shawmut</option>
+            <option value="ashmont">Ashmont</option>
+            <option value="north quincy">North Quincy</option>
+            <option value="wollaston">Wollaston</option>
+            <option value="quincy center">Quincy Center</option>
+            <option value="quincy adams">Quincy Adams</option>
+            <option value="braintree">Braintree</option>
+        </select>
+        <br><br>
+        <input type="submit" id="redSub" value="Submit" disabled>
+        <br>
+        <h2>ORANGE LINE</h2>
+
+        <label for="orange1">Starting Station:</label>
+        <select name="orange1" id="orange1" disabled>
+            <option value="oak grove">Oak Grove</option>
+            <option value="malden center">Malden Center</option>
+            <option value="wellington">Wellington</option>
+            <option value="assembly">Assembly</option>
+            <option value="sullivan square">Sullivan Square</option>
+            <option value="community college">Community College</option>
+            <option value="north station">North Station</option>
+            <option value="haymarket">Haymarket</option>
+            <option value="state">State</option>
+            <option value="downtown crossing">Downtown Crossing</option>
+            <option value="chinatown">Chinatown</option>
+            <option value="tufts medical center">Tufts Medical Center</option>
+            <option value="back bay">Back Bay</option>
+            <option value="massachusetts ave">Massachusetts Ave</option>
+            <option value="ruggles">Ruggles</option>
+            <option value="roxbury crossing">Roxbury Crossing</option>
+            <option value="jackson square">Jackson Square</option>
+            <option value="stony brook">Stony Brook</option>
+            <option value="green street">Green Street</option>
+            <option value="forest hills">Forest Hills</option>
+        </select>
+        <br><br>
+
+        <label for="orange2">Ending Station:</label>
+        <select name="orange2" id="orange2" disabled>
+            <option value="oak grove">Oak Grove</option>
+            <option value="malden center">Malden Center</option>
+            <option value="wellington">Wellington</option>
+            <option value="assembly">Assembly</option>
+            <option value="sullivan square">Sullivan Square</option>
+            <option value="community college">Community College</option>
+            <option value="north station">North Station</option>
+            <option value="haymarket">Haymarket</option>
+            <option value="state">State</option>
+            <option value="downtown crossing">Downtown Crossing</option>
+            <option value="chinatown">Chinatown</option>
+            <option value="tufts medical center">Tufts Medical Center</option>
+            <option value="back bay">Back Bay</option>
+            <option value="massachusetts ave">Massachusetts Ave</option>
+            <option value="ruggles">Ruggles</option>
+            <option value="roxbury crossing">Roxbury Crossing</option>
+            <option value="jackson square">Jackson Square</option>
+            <option value="stony brook">Stony Brook</option>
+            <option value="green street">Green Street</option>
+            <option value="forest hills">Forest Hills</option>
+        </select>
+        <br><br>
+        <input type="submit" id="orangeSub" value="Submit" disabled>
+        <br>
+        <h2>BLUE LINE</h2>
+        
+        <label for="blue1">Starting Station:</label>
+        <select name="blue1" id="blue1" disabled>
+            <option value="wonderland">Wonderland</option>
+            <option value="revere beach">Revere Beach</option>
+            <option value="beachmont">Beachmont</option>
+            <option value="suffolk downs">Suffolk Downs</option>
+            <option value="orient hights">Orient Heights</option>
+            <option value="wood island">Wood Island</option>
+            <option value="airport">Airport</option>
+            <option value="maverick">Maverick</option>
+            <option value="aquarium">Aquarium</option>
+            <option value="state">State</option>
+            <option value="government center">Government Center</option>
+            <option value="bowdoin">Bowdoin</option>
+        </select>
+        <br><br>
+
+        <label for="blue2">Starting Station:</label>
+        <select name="blue2" id="blue2" disabled>
+            <option value="wonderland">Wonderland</option>
+            <option value="revere beach">Revere Beach</option>
+            <option value="beachmont">Beachmont</option>
+            <option value="suffolk downs">Suffolk Downs</option>
+            <option value="orient hights">Orient Heights</option>
+            <option value="wood island">Wood Island</option>
+            <option value="airport">Airport</option>
+            <option value="maverick">Maverick</option>
+            <option value="aquarium">Aquarium</option>
+            <option value="state">State</option>
+            <option value="government center">Government Center</option>
+            <option value="bowdoin">Bowdoin</option>
+        </select>
+        <br><br>
+        <input type="submit" id="blueSub" value="Submit" disabled>
+        <br><br>
+        
+        <label for="starting_station_line_dropdown">Starting Station MBTA Line:</label>
+        <select name="starting_station_line_dropdown" id="starting_station_line_dropdown" default="Choose Line">
+            <option value="Red"> Red </option>
+            <option value="Green"> Green </option>
+        </select>
+        <br>
+
+        <label for="starting_station_dropdown">Starting Station:</label>
+        <select name="starting_station_dropdown" id="starting_station_dropdown">
+            <option value="Downtown Crossing"> Park Street </option>
+            <option value="Downtown Crossing"> Downtown Crossing </option>
+        </select>
+        <br>
+
+        <label for="ending_station_line_dropdown"> Ending Station MBTA Line: </label>
+        <select name="ending_station_line_dropdown" id="ending_station_line_dropdown" default="Choose Line">
+            <option value="Red"> Red </option>
+            <option value="Green"> Green </option>
+        </select>
+        <br>
+
+        <label for="ending_station_dropdown"> Ending Station: </label>
+        <select name="ending_station_dropdown" id="ending_station_dropdown">
+            <option value="Park Street"> Downtown Crossing </option>
+            <option value="Park Street"> Park Street </option>
+        </select>
+        <br>
+
+        <br> <br>
+        <label for="start"> Start: </label>
+        <input type="text" id="start" name="start"><br><br>
+        <label for="end"> End: </label>
+        <input type="text" id="end" name="end"><br><br>
+
+        <button type="button" onclick="getInputs()"> Submit </button>
+        <!-- <input type="submit" value="Submit"> --> 
+    </form>
+    
+
+
+    <p id="route_label"> Going from x to y </p>
+    <p id="time_estimate_label"> Train will come in: x minutes </p>
+
+    <script>
+        function getInputs()
+        {
+            let starting_station = document.getElementById("starting_station_dropdown").value;
+            let ending_station = document.getElementById("ending_station_dropdown").value;
+            let route_label = document.getElementById("route_label");
+            route_label.innerText = "Going from " + starting_station + " to " + ending_station;
+        }
+    </script>
+    <button type="button" id="testButton" onclick="travelTime('Red', 'Harvard', 'Davis')">Test2</button>
+    <script type="module" src="functionCode.js"></script>
+
+    <script type="module">
+        import {travelTime} from './functionCode.js';
+        document.getElementById('testButton').addEventListener('click', travelTime('Red', 'Davis','Park Street'));
+    </script>
+</body>
+</html>
