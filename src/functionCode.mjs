@@ -1,6 +1,6 @@
 import MBTA from '/mbta-client';
 
-document.getElementById('testButton').addEventListener('click', travelTime('Red', 'Davis','Park Street'));
+document.getElementById('testButton').addEventListener('click', console.log("Hello world"));
 
 // Instantiate MBTA with your API key
 const mbta = new MBTA("7642597d510e4e7c91b681eb54d1470a");
