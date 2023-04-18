@@ -1,0 +1,116 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  OrdersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: MBTA_Stops
+      AttributeDefinitions:
+        - AttributeName: Trip
+          AttributeType: S
+        - AttributeName: Time
+          AttributeType: N
+      KeySchema:
+        - AttributeName: Trip
+          KeyType: HASH
+        - AttributeName: Time
+          KeyType: RANGE
+      TimeToLiveSpecification:
+        AttributeName: ExpirationTime
+        Enabled: true
+      ProvisionedThroughput:
+        ReadCapacityUnits: "10"
+        WriteCapacityUnits: "5"
+    DependsOn:
+      - DynamoDBQueryPolicy
+  DynamoDBQueryPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: DynamoDBQueryPolicy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - dynamodb:Query
+              - dynamodb:Scan
+              - dynamodb:PutItem
+            Resource: "*"
+      Roles:
+        - !Ref OrdersTableQueryRole
+  OrdersTableQueryRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - dynamodb.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+  LambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Runtime: nodejs12.x
+      Role: !GetAtt LambdaRole.Arn
+      Handler: index.handler
+      Code:
+        ZipFile: |
+          var AWS = require('aws-sdk');
+          const dynamodbClient = new AWS.DynamoDB.DocumentClient();
+          import {blueLineTravelTimesMap} from './blueLineTravelTimesDict.js';
+
+
+          exports.handler = (event, context, callback) => {
+            blueline = blueLineTravelTimesMap;
+            for (const [key, value] of blueline) {
+              var params = {
+              Item : {
+                "Trip" : key,
+                "Time" : value
+              },
+              TableName : 'MBTA_Stops'
+            };
+            dynamodbClient.put(params).promise()
+              .then((data) => {
+                  console.info('successfully update to dynamodb', params)
+              })
+              .catch((err) => {
+                  console.info('failed adding data dynamodb', err)
+              });
+            }
+            
+            
+          }
+    DependsOn:
+      - LambdaRoleDynamoDBPolicy
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+  LambdaRoleDynamoDBPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: LambdaRoleDynamoDBPolicy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - dynamodb:Query
+              - dynamodb:Scan
+              - dynamodb:PutItem
+            Resource: "*"
+      Roles:
+        - !Ref LambdaRole
