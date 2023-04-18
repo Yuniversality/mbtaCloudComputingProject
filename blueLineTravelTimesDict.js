@@ -143,3 +143,5 @@ var blueLineTravelTimesMap = new Map([
     ["WonderlandBeachmont", 660000],
     ["WonderlandRevere", 600000]
 ]);
+
+module.exports = blueLineTravelTimesMap;
