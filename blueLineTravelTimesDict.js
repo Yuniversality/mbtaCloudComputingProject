@@ -1,4 +1,4 @@
-let blueLineTravelTimesMap = new Map([
+var blueLineTravelTimesMap = new Map([
     ["BowdoinGov", 60000],
     ["BowdoinState", 120000],
     ["BowdoinAquarium", 180000],
