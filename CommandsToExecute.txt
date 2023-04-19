@@ -1,0 +1,32 @@
+
+(RUN CLOUDFORMATION)
+aws cloudformation create-stack --stack-name cf-mbta-stack --template-body file://cfTemplate.yaml --capabilities CAPABILITY_NAMED_IAM
+
+(CREATE LAMBDA ROLE)
+aws iam create-role --role-name mbta-lambda-role --assume-role-policy-document '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"Service":"lambda.amazonaws.com"},"Action":"sts:AssumeRole"}]}' --query "Role.Arn" --output text
+
+(CREATE FUNCTION)
+aws lambda create-function --function-name MBTA-lambda --runtime nodejs14.x --zip-file fileb://blueline.zip --handler index.handler --role REPLACE
+
+
+(ADD PERMISSION TO ROLE)
+aws lambda add-permission --function-name MBTA-lambda --action lambda:InvokeFunctionUrl --principal "*" --function-url-auth-type "NONE" --statement-id url
+
+(CREATE LAMBDA URL CONFIG)
+aws lambda create-function-url-config --function-name MBTA-lambda --auth-type NONE
+
+(UPDATE LAMBDA CODE)
+aws lambda update-function-code --function-name MBTA-lambda --zip-file fileb://blueline.zip
+
+(GET LAMBDA URL)
+aws lambda get-function-url-config --function-name MBTA-lambda --query "[FunctionUrl]"
+
+
+(DELETE LAMBDA ROLE)
+aws iam delete-role --role-name mbta-lambda-role
+
+(DELETE LAMBDA)
+aws lambda delete-function --function-name MBTA-lambda
+
+(DELETE CLOUDFORMATION)
+aws cloudformation delete-stack --stack-name cf-mbta-stack
