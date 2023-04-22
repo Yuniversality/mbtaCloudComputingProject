@@ -1,0 +1,8 @@
+
+To run the script to create the AWS environment run the command "./MBTAScript".
+
+To get to the website, copy the link that is output in the line "URL: COPY_THIS_URL"
+
+Once on the website, choose a start stop and an end stop from their respective dropdown menu.
+
+Click the submit button to get an estimated time between the two stations you selected.
